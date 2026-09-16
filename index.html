@@ -31,20 +31,7 @@
   --gold-dim:rgba(200,169,110,.48);
   --gold-faint:rgba(200,169,110,.3);
 }
-/* Inversion : la section « ce que ce n'est pas ». La négation change de fond. */
-.inverse{
-  --bg:#F2EBD9;
-  --surface:#E8DFCA;
-  --gold:#8C5E20;
-  --cream:#1A1510;
-  --ink:#1A1510;
-  --ink-dim:rgba(26,21,16,.62);
-  --ink-faint:rgba(26,21,16,.38);
-  --line:rgba(140,94,32,.16);
-  --line-mid:rgba(140,94,32,.26);
-  --gold-dim:rgba(140,94,32,.62);
-  --gold-faint:rgba(140,94,32,.4);
-}
+
 
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -161,67 +148,40 @@ header{
 }
 .device img{width:100%;max-width:100%;height:auto;display:block;}
 
-/* ═══════════ RAIL TEMPOREL ═══════════ */
-.blocks{padding:150px 0 130px;}
-.blocks-head{margin-bottom:104px;max-width:800px;}
-.blk{
-  position:relative;
-  display:grid;grid-template-columns:132px minmax(0,1fr) minmax(0,1fr);
-  gap:56px;align-items:start;padding-bottom:112px;
+/* ═══════════ CE QUE C'EST / CE QUE CE N'EST PAS ═══════════ */
+.compare-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+.compare-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid var(--line-mid);border-radius:20px;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.35);
 }
-.blk:last-child{padding-bottom:0;}
-.blk::before{ /* la ligne qui relie les étapes */
-  content:"";position:absolute;left:23px;top:62px;bottom:24px;
-  width:1px;background:linear-gradient(180deg,var(--line-mid) 0%,var(--line) 55%,transparent 100%);
-}
-.blk:last-child::before{display:none;}
-.rail{position:relative;padding-top:5px;}
-.rail-icon{
-  width:48px;height:48px;border-radius:50%;
-  border:1px solid var(--line-mid);background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;z-index:1;
-}
-.rail-when{
-  display:block;margin-top:16px;
-  font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold-dim);line-height:1.5;
-}
-.blk h3{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
-  font-size:clamp(1.75rem,3.2vw,2.35rem);color:var(--cream);line-height:1.14;margin-bottom:24px;}
-.blk .lead{font-size:clamp(1.1rem,1.9vw,1.32rem);margin-bottom:26px;}
-.honesty{
-  border-left:2px solid var(--gold-faint);padding:6px 0 6px 20px;margin-top:34px;
-  font-family:'Instrument Serif',serif;font-style:italic;
-  font-size:1.06rem;color:var(--gold-dim);max-width:42ch;line-height:1.55;
+.cc-head{padding:22px 26px 14px;font-size:.66rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;}
+.cc-yes-h{background:var(--bg);color:var(--gold-dim);}
+.cc-no-h{background:#F2EBD9;color:rgba(140,94,32,.66);border-left:1px solid rgba(0,0,0,.12);}
+.cc-row{display:flex;align-items:flex-start;gap:14px;padding:18px 26px;font-size:.96rem;border-top:1px solid;}
+.cc-yes{background:var(--bg);color:var(--ink);border-color:var(--line);}
+.cc-no{background:#F2EBD9;color:#1A1510;border-color:rgba(140,94,32,.16);border-left:1px solid rgba(0,0,0,.12);}
+.cc-icon{width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;}
+.cc-yes .cc-icon{border:1px solid var(--line-mid);color:var(--gold);}
+.cc-no .cc-icon{border:1px solid rgba(140,94,32,.3);color:#8C5E20;}
+.cc-sub{display:block;font-size:.78rem;font-weight:300;margin-top:3px;
+  color:rgba(237,232,220,.5);}
+.cc-no .cc-sub{color:rgba(26,21,16,.55);}
+@media(max-width:640px){
+  .cc-head{padding:16px 16px 10px;font-size:.6rem;}
+  .cc-row{padding:15px 16px;font-size:.88rem;gap:10px;}
 }
 
-/* fragments d'interface */
-.fig{
-  position:sticky;top:110px;
-  background:var(--surface);border:1px solid var(--line);border-radius:18px;
-  padding:26px;box-shadow:0 24px 64px rgba(0,0,0,.42);
-}
-.fig{padding:0;overflow:hidden;line-height:0;}
-.fig img{width:100%;max-width:100%;height:auto;display:block;border-radius:17px;}
-.fig figcaption{
-  padding:16px 22px 20px;line-height:1.6;
-  font-size:.74rem;color:var(--gold-dim);font-style:italic;
-}
-.fig-lbl{
-  font-size:.55rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gold-faint);margin-bottom:18px;
-}
-.fig-note{margin-top:18px;font-size:.72rem;color:var(--gold-dim);font-style:italic;line-height:1.6;}
-.fiche-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px;}
-.fiche-h b{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:1.24rem;color:var(--cream);}
-.fiche-h span{font-size:.68rem;color:var(--ink-faint);white-space:nowrap;}
-.row{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-top:1px solid var(--line);font-size:.8rem;}
-.row .k{color:var(--ink-faint);}
-.row .v{color:var(--ink);text-align:right;}
-.row .v em{font-style:normal;color:var(--gold);}
-/* anneaux concentriques — le score qui se construit */
-.rings{display:flex;justify-content:center;padding:6px 0 4px;}
+/* ═══════════ RESPIRATION ═══════════ */
+.breathe{padding:96px 0;display:flex;justify-content:center;}
+.breathe .hair-mark{position:relative;width:100%;max-width:640px;display:flex;
+  align-items:center;justify-content:center;}
+.breathe .hair-mark::before,.breathe .hair-mark::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,169,110,.5));}
+.breathe .hair-mark::after{background:linear-gradient(90deg,rgba(200,169,110,.5),transparent);}
+.breathe .mark{width:34px;height:34px;flex-shrink:0;margin:0 22px;}
 
 /* ═══════════ CARROUSEL DES CALQUES ═══════════ */
 .layers{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
@@ -279,18 +239,6 @@ header{
 .p-item p{font-size:.88rem;}
 
 /* ═══════════ CE QUE CE N'EST PAS (inversé) ═══════════ */
-.mark-anchor{width:46px;height:46px;margin-bottom:26px;}
-.nots{margin-top:64px;}
-.not{display:grid;grid-template-columns:56px 1fr;gap:26px;padding:34px 0;border-top:1px solid var(--line-mid);align-items:start;}
-.not:last-child{border-bottom:1px solid var(--line-mid);}
-.not-x{
-  width:38px;height:38px;border-radius:50%;border:1px solid var(--line-mid);
-  display:flex;align-items:center;justify-content:center;
-}
-.not h3{font-weight:500;font-size:1.06rem;color:var(--ink);margin-bottom:7px;}
-.not p{font-size:.92rem;max-width:52ch;}
-.inverse .display{color:var(--ink);}
-
 /* ═══════════ BÊTA ═══════════ */
 .beta{position:relative;overflow:hidden;}
 .beta .myc{opacity:.46;
@@ -320,32 +268,22 @@ footer{border-top:1px solid var(--line);padding:56px 0 64px;}
 .foot-credit{width:100%;margin-top:34px;padding-top:26px;border-top:1px solid var(--line);font-size:.7rem;color:var(--ink-faint);line-height:1.7;}
 
 /* ═══════════ RESPONSIVE ═══════════ */
-@media(max-width:1000px){
-  .fig{position:static;}
-  .blk{grid-template-columns:96px minmax(0,1fr);gap:36px;}
-  .blk .fig{grid-column:2;margin-top:8px;}
-  .rail::before{left:23px;}
-}
+
 @media(max-width:860px){
-  .band,.blocks{padding:96px 0;}
   .hero{padding:76px 0 88px;}
   .hero-grid{grid-template-columns:1fr;gap:64px;}
   .hero .lede{max-width:none;}
   .p-grid{grid-template-columns:1fr;gap:44px;}
-  .blocks-head{margin-bottom:64px;}
+  .compare-head{margin-bottom:44px;}
+  .compare-grid{border-radius:16px;}
+  .cc-head{padding:14px 10px;font-size:.56rem;letter-spacing:.1em;}
+  .cc-row{padding:14px 12px;font-size:.84rem;gap:8px;}
+  .cc-icon{width:19px;height:19px;}
+  .cc-sub{font-size:.7rem;}
   .g1{right:-40%;top:-26%;}
   .g2{left:-46%;top:44%;}
   .myc{width:1100px;height:820px;opacity:.45;}
 }
-@media(max-width:640px){
-  body{font-size:16px;}
-  .wrap{padding:0 22px;}
-  .blk{grid-template-columns:1fr;gap:0;padding-bottom:76px;}
-  .rail{display:flex;align-items:center;gap:16px;margin-bottom:26px;}
-  .rail::before{display:none;}
-  .rail-when{margin-top:0;}
-  .blk .fig{grid-column:1;margin-top:28px;}
-  .not{grid-template-columns:1fr;gap:16px;}
   .field-row{grid-template-columns:1fr;}
   .device{width:270px;height:566px;}
 }
@@ -786,95 +724,61 @@ footer{border-top:1px solid var(--line);padding:56px 0 64px;}
   </div>
 </div>
 
-<!-- ══════════════════ LES TROIS TEMPS ══════════════════ -->
-<div class="band blocks">
+<!-- ══════════════════ CE QUE C'EST / CE QUE CE N'EST PAS ══════════════════ -->
+<div class="band">
   <div class="wrap">
-    <div class="blocks-head">
-      <span class="eyebrow">Ce que ça change</span>
-      <h2 class="display">Utile dès la première sortie.<br>Précieux à la troisième saison.</h2>
+    <div class="compare-head">
+      <span class="eyebrow">En clair</span>
+      <h2 class="display">Ce que Lutin fait,<br>ce qu'il ne fait pas</h2>
     </div>
 
-    <!-- ─── JOUR 1 ─── -->
-    <div class="blk">
-      <div class="rail">
-        <div class="rail-icon">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2.5c0 0-5.5 7-5.5 11a5.5 5.5 0 0 0 11 0c0-4-5.5-11-5.5-11z"/>
-            <path d="M4 21.5h16"/>
-          </svg>
-        </div>
-        <span class="rail-when">Jour 1</span>
-      </div>
-      <div>
-        <h3>Ce que tu arrêtes<br>de faire</h3>
-        <p class="lead">Les prévisions météo, ce n'est pas le plus pertinent. Le cumul des semaines écoulées, oui.</p>
-        <p>Sur <strong>1, 7 ou 15 jours</strong>, pour chacun de tes coins.</p>
-        <p>Le relief, la forêt, le sol&nbsp;: les couches utiles au même endroit,
-        sans trois onglets Géoportail. Et une couche radar de précipitations,
-        pour enfin localiser les derniers orages.</p>
-        <p class="honesty">On ne t'invente pas de nouveaux coins, mais tu choisiras
-        sans hésiter vers lequel de tes coins te déplacer le week-end prochain.</p>
-      </div>
-      <figure class="fig">
-        <img src="fig-pluie.jpg" width="760" height="1151" alt="Calque de pluie sur la carte : cumul des 20 derniers jours en dégradé de couleurs, avec un coin repéré dessus.">
-        <figcaption>Le cumul se lit sur la carte, en 1, 7, 15 ou 20 jours. Consultable avant de partir, sur chacun de tes coins.</figcaption>
-      </figure>
-    </div>
+    <div class="compare-grid">
+      <div class="cc-head cc-yes-h">Ce que c'est</div>
+      <div class="cc-head cc-no-h">Ce que ce n'est pas</div>
 
-    <!-- ─── CHAQUE RÉCOLTE ─── -->
-    <div class="blk">
-      <div class="rail">
-        <div class="rail-icon">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="7" width="15" height="12" rx="2"/>
-            <path d="M7 7V5.5A1.5 1.5 0 0 1 8.5 4h4"/>
-            <path d="M21 8.5v9"/>
-            <circle cx="10.5" cy="13" r="3"/>
-          </svg>
-        </div>
-        <span class="rail-when">Chaque<br>récolte</span>
+      <div class="cc-row cc-yes">
+        <span class="cc-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Une photo, la fiche récolte se remplit seule<span class="cc-sub">Zéro saisie, zéro oubli</span></span>
       </div>
-      <div>
-        <h3>Ce que l'app<br>retient pour toi</h3>
-        <p class="lead">Une photo, et la fiche se remplit seule.</p>
-        <p>Altitude, pente, exposition, essence dominante, nature du sol — et la
-        météo des <strong>vingt jours qui ont précédé</strong>, figée avec la
-        récolte. Zéro saisie, zéro oubli.</p>
-        <p>Deux saisons plus tard, tu ne te demandes plus <em>pourquoi</em> ce coin
-        avait donné. C'est écrit.</p>
+      <div class="cc-row cc-no">
+        <span class="cc-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>
+        <span>Pas une app d'identification<span class="cc-sub">Une suggestion, jamais une confirmation</span></span>
       </div>
-      <figure class="fig">
-        <img src="fig-terrain.jpg" width="760" height="806" alt="Fiche d'un coin dans Lutin : météo des jours précédents, puis altitude, pente, exposition, nature du sol et essence forestière.">
-        <figcaption>Altitude, pente, exposition, sol, essence : renseignés sans une seule saisie.</figcaption>
-      </figure>
-    </div>
 
-    <!-- ─── SAISON 3 ─── -->
-    <div class="blk">
-      <div class="rail">
-        <div class="rail-icon">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" stroke-width="1.5">
-            <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/>
-            <circle cx="12" cy="12" r="1.9" fill="#C8A96E" stroke="none"/>
-          </svg>
-        </div>
-        <span class="rail-when">Saison 3</span>
+      <div class="cc-row cc-yes">
+        <span class="cc-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Chaque récolte gardée en mémoire, saison après saison</span>
       </div>
-      <div>
-        <h3>Ce que ça devient,<br>saison après saison</h3>
-        <p class="lead">Le carnet commence à répondre.</p>
-        <p>Les conditions d'aujourd'hui ressemblent-elles à celles qui ont donné&nbsp;?
-        Le score du jour ne parle que de <strong>tes coins</strong>, à partir de
-        <strong>tes récoltes</strong> — pas d'une carte régionale, pas d'une moyenne
-        nationale.</p>
-        <p>La trace avant tout&nbsp;: Lutin ne raconte rien sur un endroit où tu
-        n'es jamais allé.</p>
+      <div class="cc-row cc-no">
+        <span class="cc-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>
+        <span>Pas un réseau social<span class="cc-sub">Ton carnet ne parle qu'à toi</span></span>
       </div>
-      <figure class="fig">
-        <img src="fig-memoire.jpg" width="760" height="681" alt="Lutin rapproche les conditions du jour d'une récolte faite à la même période une saison plus tôt, sur le même coin.">
-        <figcaption>Le jour où les conditions se rapprochent d'une récolte passée, le carnet le signale.</figcaption>
-      </figure>
+
+      <div class="cc-row cc-yes">
+        <span class="cc-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Le bon coin, au bon moment<span class="cc-sub">Choisi parmi les tiens, pas inventé</span></span>
+      </div>
+      <div class="cc-row cc-no">
+        <span class="cc-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>
+        <span>Pas une carte publique de tes coins</span>
+      </div>
+
+      <div class="cc-row cc-yes">
+        <span class="cc-icon"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>Pluie et orages repérés avant de partir</span>
+      </div>
+      <div class="cc-row cc-no">
+        <span class="cc-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></span>
+        <span>Pas de nouveaux coins inventés</span>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════ RESPIRATION ══════════════════ -->
+<div class="breathe" aria-hidden="true">
+  <div class="hair-mark">
+    <svg class="mark" aria-hidden="true"><use href="#lutin"/></svg>
   </div>
 </div>
 
@@ -883,9 +787,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 64px;}
   <div class="wrap">
     <div class="layers-head">
       <span class="eyebrow">Sur la carte</span>
-      <h2 class="display">Pluie, sol, forêt, relief —<br>sur la même carte</h2>
-      <p>Les quatre cartes que tu consultais séparément, superposées au même
-      endroit.</p>
+      <h2 class="display">Où aller,<br>au bon moment</h2>
+      <p>Pluie, sol, forêt, relief&nbsp;: les quatre cartes que tu consultais
+      séparément, superposées sur tes coins.</p>
     </div>
 
     <div class="rail-wrap">
@@ -959,47 +863,6 @@ footer{border-top:1px solid var(--line);padding:56px 0 64px;}
         <h3>Les exports sortent dégradés</h3>
         <p>Si tu partages une sortie, la localisation se limite au département
         et les photos partent sans métadonnées. Le coin, lui, ne sort jamais.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════ CE QUE CE N'EST PAS · inversé ══════════════════ -->
-<div class="band inverse">
-  <div class="wrap">
-    <svg class="mark mark-anchor" aria-hidden="true"><use href="#lutin"/></svg>
-    <span class="eyebrow">Pour être clair</span>
-    <h2 class="display">Ce que Lutin n'est pas</h2>
-    <div class="nots">
-      <div class="not">
-        <span class="not-x">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8C5E20" stroke-width="1.9" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
-        </span>
-        <div>
-          <h3>Pas une app d'identification</h3>
-          <p>Elle peut suggérer une piste, jamais confirmer une espèce.
-          On ne mange pas sur la foi d'un algorithme.</p>
-        </div>
-      </div>
-      <div class="not">
-        <span class="not-x">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8C5E20" stroke-width="1.9" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
-        </span>
-        <div>
-          <h3>Pas un réseau social</h3>
-          <p>Rien à liker, personne à suivre, aucun classement.
-          Ton carnet ne parle qu'à toi.</p>
-        </div>
-      </div>
-      <div class="not">
-        <span class="not-x">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8C5E20" stroke-width="1.9" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
-        </span>
-        <div>
-          <h3>Pas une carte des coins</h3>
-          <p>Ni les tiens, ni ceux des autres. Lutin ne sait rien des endroits
-          où tu n'es jamais allé — et n'invente rien.</p>
-        </div>
       </div>
     </div>
   </div>
